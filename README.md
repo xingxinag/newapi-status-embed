@@ -25,6 +25,53 @@
 - 支持从模型接口或日志中自动发现模型
 - 支持通过环境变量限制显示的模型白名单
 
+## 一键部署 / 快速入口
+
+### Railway
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template?template=https%3A%2F%2Fgithub.com%2Fxingxinag%2Fnewapi-status-embed)
+
+适配情况：
+
+- 仓库已有 `Dockerfile`
+- 项目是长驻 Node.js HTTP 服务
+- 需要在 Railway Variables 中填写下方“环境变量”章节的配置
+
+### Docker / 自建服务器
+
+```bash
+docker compose up -d
+```
+
+适配情况：
+
+- 仓库已有 `Dockerfile`
+- 仓库已有 `docker-compose.yml`
+- 需要准备 `.env` 文件，内容可参考 `.env.example`
+
+### Render 手动入口
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://dashboard.render.com/select-repo?type=web)
+
+适配情况：
+
+- 可创建 Web Service
+- 可使用 Dockerfile 部署，或使用 `npm install && npm start`
+- 仓库暂无 `render.yaml`，所以这里提供的是控制台入口，不是完整一键模板
+
+### 其他平台支持情况
+
+| 平台 | 状态 | 说明 |
+|------|------|------|
+| Docker / 自建服务器 | 推荐 | 仓库已有 `Dockerfile` 和 `docker-compose.yml`，最贴合当前长驻 Node 服务形态 |
+| Railway | 推荐 | 可直接基于 Dockerfile / Node 服务部署 |
+| Render | 可用 | 可按 Web Service 部署，但仓库暂无 `render.yaml` 一键配置 |
+| Fly.io | 理论可用 | 可基于 Dockerfile 部署，但仓库暂无 `fly.toml` |
+| Vercel | 不推荐 | 当前项目是长驻 Node HTTP 服务，不是 Vercel Serverless Functions 结构 |
+| Netlify | 不推荐 | 不是静态站，也没有 Netlify Functions 配置 |
+| Cloudflare Pages | 不推荐 | 不是纯静态站，没有 Workers / Wrangler 适配配置 |
+| GitHub Pages | 不支持完整功能 | 只能托管静态文件，无法运行 `server.js` 聚合日志 |
+
 ## 项目结构
 
 - `server.js`：Node 服务端，负责聚合日志并提供接口
